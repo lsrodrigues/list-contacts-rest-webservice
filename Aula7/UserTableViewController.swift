@@ -10,7 +10,8 @@ import UIKit
 
 class UserTableViewController: UITableViewController {
 
-    var users: [User]?
+    var users = [User]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         makeHTTPGetRequest()
@@ -23,7 +24,7 @@ class UserTableViewController: UITableViewController {
         let queue = OperationQueue()
         queue.qualityOfService = .userInteractive
         
-        let session = URLSession(configuration: cfg, delegate: self as? URLSessionDelegate, delegateQueue: queue)
+        let session = URLSession(configuration: cfg, delegate: self, delegateQueue: queue)
         let request = URL(string: baseURL)
         
         let task = session.dataTask(with: request!)
@@ -32,15 +33,15 @@ class UserTableViewController: UITableViewController {
     
     func buildJson(){
         let decoder = JSONDecoder()
-        users = try? decoder.decode([User].self, from: receivedData)
-        
-        let mainQueue = DispatchQueue.main
-        
-        mainQueue.async {
-            self.tableView.reloadData()
+        do {
+            users = try decoder.decode([User].self, from: receivedData)
+        }catch {
+            debugPrint(error)
         }
         
-        
+        DispatchQueue.main.async { [unowned self] in
+            self.tableView.reloadData()
+        }
     }
     
 
@@ -49,27 +50,16 @@ class UserTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        
-        if let user = users{
-            return user.count
-        }
-        return 0
+       return users.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath)
         
-        cell.textLabel?.text = users?[indexPath.row].username
-        cell.detailTextLabel?.text = users?[indexPath.row].name
+        let user = users[indexPath.row]
+        cell.textLabel?.text = user.username
+        cell.detailTextLabel?.text = user.name
         return cell
     }
 
