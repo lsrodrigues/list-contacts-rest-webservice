@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  User.swift
 //  Aula7
 //
 //  Created by HC5MAC11 on 21/09/17.
@@ -8,10 +8,9 @@
 
 import UIKit
 
-class ViewController: UITableViewController {
+struct User: Codable {
 
+    var name:String
+    var username:String
     
-
-
 }
-

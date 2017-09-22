@@ -13,6 +13,8 @@
 		33BF77F61F747BA5000B9D42 /* Aula7.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 33BF77F41F747BA5000B9D42 /* Aula7.xcdatamodeld */; };
 		33BF77F81F747BA5000B9D42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33BF77F71F747BA5000B9D42 /* Assets.xcassets */; };
 		33BF77FB1F747BA5000B9D42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33BF77F91F747BA5000B9D42 /* LaunchScreen.storyboard */; };
+		33BF78031F7483F9000B9D42 /* UserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BF78021F7483F9000B9D42 /* UserTableViewController.swift */; };
+		33BF78051F749944000B9D42 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BF78041F749944000B9D42 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		33BF77F71F747BA5000B9D42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		33BF77FA1F747BA5000B9D42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		33BF77FC1F747BA5000B9D42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33BF78021F7483F9000B9D42 /* UserTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewController.swift; sourceTree = "<group>"; };
+		33BF78041F749944000B9D42 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				33BF77F91F747BA5000B9D42 /* LaunchScreen.storyboard */,
 				33BF77FC1F747BA5000B9D42 /* Info.plist */,
 				33BF77F41F747BA5000B9D42 /* Aula7.xcdatamodeld */,
+				33BF78021F7483F9000B9D42 /* UserTableViewController.swift */,
+				33BF78041F749944000B9D42 /* User.swift */,
 			);
 			path = Aula7;
 			sourceTree = "<group>";
@@ -141,6 +147,8 @@
 			files = (
 				33BF77F61F747BA5000B9D42 /* Aula7.xcdatamodeld in Sources */,
 				33BF77F01F747BA5000B9D42 /* ViewController.swift in Sources */,
+				33BF78031F7483F9000B9D42 /* UserTableViewController.swift in Sources */,
+				33BF78051F749944000B9D42 /* User.swift in Sources */,
 				33BF77EE1F747BA5000B9D42 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
