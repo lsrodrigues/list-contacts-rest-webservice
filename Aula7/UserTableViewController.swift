@@ -7,14 +7,37 @@
 //
 
 import UIKit
+import CoreData
+import Foundation
+import SystemConfiguration
 
 class UserTableViewController: UITableViewController {
 
     var users = [User]()
+    private var persistentContainer = AppDelegate.persistentContainer
+    private var reachability: Reachability?
+    private var isInternetAvailable = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         makeHTTPGetRequest()
+        
+        reachability = Reachability.networkReachabilityForInternetConnection()
+        isInternetAvailable = reachability?.currentReachabilityStatus != .notReachable
+        
+        if reachability?.startNotifier() ?? false {
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(reachabilityDidChange(_:)),
+                                                   name: ReachabilityDidChangeNotificationName,
+                                                   object: nil)
+        }
+        
+        
+    }
+    
+    @objc private func reachabilityDidChange(_ notification: Notification) {
+        reachability = notification.object as? Reachability
+        isInternetAvailable = reachability?.currentReachabilityStatus != .notReachable
     }
 
     let baseURL = "https://jsonplaceholder.typicode.com/users"
@@ -31,10 +54,32 @@ class UserTableViewController: UITableViewController {
         task.resume()
     }
     
+    func getAll(){
+        persistentContainer.performBackgroundTask { [unowned self] (context) in
+            let fetchRequest: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
+            do {
+                let retrivedUsers = try context.fetch(fetchRequest)
+                for user in retrivedUsers {
+                    self.users.append(User(name: user.name!, username:user.username!))
+                }
+            }catch {
+                print("Erro ao recuperar dados! \(error)")
+            }
+        }
+    }
+        
+    
     func buildJson(){
         let decoder = JSONDecoder()
         do {
-            users = try decoder.decode([User].self, from: receivedData)
+            if let reachabilityStatus = Reachability.networkReachabilityForInternetConnection()?.currentReachabilityStatus{
+                switch reachabilityStatus{
+                    case .notReachable: getAll()
+                    case .reachableViaWiFi:  users = try decoder.decode([User].self, from: receivedData)
+                    case .reachableViaWWAN:  users = try decoder.decode([User].self, from: receivedData)
+
+                }
+            }
         }catch {
             debugPrint(error)
         }
@@ -42,6 +87,25 @@ class UserTableViewController: UITableViewController {
         DispatchQueue.main.async { [unowned self] in
             self.tableView.reloadData()
         }
+    }
+    
+    
+    func saveUser(){
+        persistentContainer.performBackgroundTask { [unowned self] (context) in
+            let user = UserEntity(context: context)
+            
+            for oneUser in self.users {
+                user.name = oneUser.name
+                user.username = oneUser.username
+            }
+            do {
+                try context.save()
+            }catch {
+                print("Erro ao persistir! \(error)")
+            }
+        }
+        
+        
     }
     
 
@@ -81,6 +145,7 @@ extension UserTableViewController: URLSessionDataDelegate{
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         if error == nil{
                 buildJson()
+                saveUser()
         }
     }
 }
