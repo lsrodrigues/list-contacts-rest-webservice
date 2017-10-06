@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0BED8F671F87113800D85BDC /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BED8F661F87113800D85BDC /* NewUserViewController.swift */; };
 		330736C51F7DD08A00190ECE /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330736C41F7DD08A00190ECE /* Reachability.swift */; };
 		33BF77EE1F747BA5000B9D42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BF77ED1F747BA5000B9D42 /* AppDelegate.swift */; };
 		33BF77F01F747BA5000B9D42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BF77EF1F747BA5000B9D42 /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0BED8F661F87113800D85BDC /* NewUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserViewController.swift; sourceTree = "<group>"; };
 		330736C41F7DD08A00190ECE /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		33BF77EA1F747BA5000B9D42 /* Aula7.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aula7.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33BF77ED1F747BA5000B9D42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				33BF78021F7483F9000B9D42 /* UserTableViewController.swift */,
 				33BF78041F749944000B9D42 /* User.swift */,
 				330736C41F7DD08A00190ECE /* Reachability.swift */,
+				0BED8F661F87113800D85BDC /* NewUserViewController.swift */,
 			);
 			path = Aula7;
 			sourceTree = "<group>";
@@ -154,6 +157,7 @@
 				33BF78031F7483F9000B9D42 /* UserTableViewController.swift in Sources */,
 				33BF78051F749944000B9D42 /* User.swift in Sources */,
 				33BF77EE1F747BA5000B9D42 /* AppDelegate.swift in Sources */,
+				0BED8F671F87113800D85BDC /* NewUserViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
