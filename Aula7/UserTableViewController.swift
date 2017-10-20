@@ -18,6 +18,7 @@ class UserTableViewController: UITableViewController {
     private var reachability: Reachability?
     private var isInternetAvailable = true
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         makeHTTPGetRequest()
@@ -25,12 +26,12 @@ class UserTableViewController: UITableViewController {
         reachability = Reachability.networkReachabilityForInternetConnection()
         isInternetAvailable = reachability?.currentReachabilityStatus != .notReachable
         
-        if reachability?.startNotifier() ?? false {
-            NotificationCenter.default.addObserver(self,
-                                                   selector: #selector(reachabilityDidChange(_:)),
-                                                   name: ReachabilityDidChangeNotificationName,
-                                                   object: nil)
-        }
+//        if reachability?.startNotifier() ?? false {
+//            NotificationCenter.default.addObserver(self,
+//                                                   selector: #selector(reachabilityDidChange(_:)),
+//                                                   name: ReachabilityDidChangeNotificationName,
+//                                                   object: nil)
+//        }
         
         
     }
@@ -60,7 +61,7 @@ class UserTableViewController: UITableViewController {
             do {
                 let retrivedUsers = try context.fetch(fetchRequest)
                 for user in retrivedUsers {
-                    self.users.append(User(name: user.name!, username:user.username!))
+                    self.users.append(User(id: user.id, name: user.name!, username:user.username!, email: user.email!, phone: user.phone!, website: user.website!))
                 }
             }catch {
                 print("Erro ao recuperar dados! \(error)")

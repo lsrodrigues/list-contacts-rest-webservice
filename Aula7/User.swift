@@ -9,8 +9,26 @@
 import UIKit
 
 struct User: Codable {
+    var id: Int32
+    var name: String
+    var username: String
+    var email: String
+    //var address: Address
+    var phone: String
+    var website: String
+    //var company: Company
+}
 
-    var name:String
-    var username:String
-    
+extension UserEntity {
+    func initUser() -> User {
+        return User(id: self.id,
+                    name: self.name ?? "",
+                    username: self.username ?? "",
+                    email: self.email ?? "",
+                    //address: self.address!.toAddress(),
+                    phone: self.phone ?? "",
+                    website: self.website ?? ""
+                    //company: self.company!.toCompany()
+        )
+    }
 }

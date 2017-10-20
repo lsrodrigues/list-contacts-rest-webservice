@@ -4,7 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -62,7 +62,7 @@
         <!--Novo Usuário-->
         <scene sceneID="5E0-4c-bQe">
             <objects>
-                <tableViewController id="lma-7v-yvA" sceneMemberID="viewController">
+                <tableViewController id="lma-7v-yvA" customClass="NewUserViewController" customModule="Aula7" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="aAf-vg-ptB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -326,7 +326,25 @@
                             <outlet property="delegate" destination="lma-7v-yvA" id="dqw-HI-Q1D"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Novo Usuário" id="Eek-gk-qvz"/>
+                    <navigationItem key="navigationItem" title="Novo Usuário" id="Eek-gk-qvz">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="PVh-SI-G0r">
+                            <connections>
+                                <action selector="cancelButton:" destination="lma-7v-yvA" id="9wz-fI-9oR"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="auE-xU-N8i">
+                            <connections>
+                                <action selector="saveButton:" destination="lma-7v-yvA" id="6ct-Bf-dlI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="emailField" destination="CKg-mj-6MS" id="Irh-QE-WG0"/>
+                        <outlet property="loginField" destination="v3G-yi-gGN" id="6vZ-Ji-ZAT"/>
+                        <outlet property="nameField" destination="XmR-QV-gHz" id="Rqu-j3-XX4"/>
+                        <outlet property="phoneField" destination="Kbf-4A-2Q9" id="jp5-vy-HLU"/>
+                        <outlet property="siteField" destination="m3Y-Dz-Df0" id="6ug-Ze-QUI"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W7o-fB-HGN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
